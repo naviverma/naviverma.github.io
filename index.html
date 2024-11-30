@@ -1,89 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navdeep Singh - CV</title>
+    <title>Navdeep Singh - Professional CV</title>
     <style>
+        :root {
+            --primary: #0077CC;
+            --secondary: #1a1f24;
+            --text: #f9f9f9;
+            --accent: #17a2b8;
+            --gradient-start: #1a1f24;
+            --gradient-end: #2c3338;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --hover-color: rgba(0, 119, 204, 0.2);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 2% 10%;
-            background-color: #343a40;
-            color: #f9f9f9;
+            margin: 0;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text);
             line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(160deg, var(--secondary), var(--primary));
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--text);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         h1 {
-            color: #f9f9f9;
-            border-bottom: 4px solid #0077CC;
-            padding-bottom: 10px;
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--text);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
         }
 
         h2 {
-            color: #f9f9f9;
-            border-bottom: 3px solid #0077CC;
-            padding-bottom: 8px;
-            padding-top: 20px;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.8rem;
+            margin-top: 3rem;
+            font-size: 2rem;
+            letter-spacing: 1px;
         }
 
         h3 {
-            color: #f9f9f9;
-            padding-bottom: 5px;
+            color: var(--accent);
+            margin: 1rem 0;
+            font-size: 1.4rem;
         }
 
-        a {
-            color: #0077CC;
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: var(--hover-color);
+            border-color: var(--primary);
+        }
+
+        .project-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-year {
+            color: var(--accent);
+            font-size: 0.9rem;
+            background: rgba(23, 162, 184, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: var(--text);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            background: var(--accent);
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .company {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .date {
+            color: #adb5bd;
+            font-style: italic;
         }
 
         ul {
             list-style-type: none;
+            padding-left: 1.5rem;
         }
 
         li {
-            margin-bottom: 15px;
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "▹";
+            position: absolute;
+            left: -1.5rem;
+            color: var(--primary);
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: var(--hover-color);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
-
 <body>
+    <header>
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-image">NS</div>
+                <div>
+                    <h1>NAVDEEP SINGH</h1>
+                    <div class="contact-info">
+                        <a href="mailto:nasingh@tcd.ie" class="contact-item">
+                            📧 nasingh@tcd.ie
+                        </a>
+                        <span class="contact-item">📱 +353 892379377</span>
+                        <a href="https://github.com/naviverma" class="contact-item">
+                            📦 GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/navdeep-singh" class="contact-item">
+                            💼 LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <h1>NAVDEEP SINGH</h1>
-    <p>Email: <a href="mailto:nasingh@tcd.ie">nasingh@tcd.ie</a> | Phone: +353 892379377</p>
-    <p>GitHub: <a href="https://github.com/naviverma">naviverma</a> | LinkedIn: <a href="https://www.linkedin.com/in/navdeep-singh-7b96421b7/">navdeep-singh</a></p>
+    <main class="container">
+        <section class="section">
+            <h2>SKILLS</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="tech-stack">
+                        <span class="tech-tag">C</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Swift</span>
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Verilog</span>
+                        <span class="tech-tag">ARM Assembly</span>
+                        <span class="tech-tag">SKILL (LISP)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Technologies & Tools</h3>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Xcode</span>
+                        <span class="tech-tag">Android Studio</span>
+                        <span class="tech-tag">VS Code</span>
+                        <span class="tech-tag">Linux</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">Keras</span>
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">FPGA</span>
+                        <span class="tech-tag">Virtuoso</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">NoSQL</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">MavLink</span>
+                        <span class="tech-tag">MQTT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>SKILLS</h2>
-    <p>Programming Languages: C, C++, Python, Swift, Kotlin, Java, Verilog, ARM Assembly, SKILL (LISP)</p>
-    <p>Technologies and Tools: Xcode, Visual Studio Code, Linux, Arduino, MATLAB, PL/SQL, Git, TensorFlow, Keras, PyTorch, FPGA, Virtuoso</p>
+        <section class="section">
+            <h2>EXPERIENCE</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="company">R&D Software Engineer Intern @ Cadence Design Systems</span>
+                    <span class="date">Jan 2024 – Aug 2024</span>
+                </div>
+                <ul>
+                    <li>Part of the Virtuoso and AWR product development team, focusing on RF design analysis, software development processes, GUI development, and debugging.</li>
+                    <li>Contributed to the development of new features for marquee customers, working on complex algorithms and high-quality C++ code.</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">SKILL (LISP)</span>
+                    <span class="tech-tag">VIM</span>
+                    <span class="tech-tag">Virtuoso</span>
+                    <span class="tech-tag">Make</span>
+                </div>
+            </div>
 
-    <h2>PROJECTS</h2>
-    <ul>
-        <li><strong>Captcha Breaker DL (Scalable Computing Project) | 2024</strong><br>Technologies: Python, TFLite, Raspberry Pi</li>
-        <li><strong>GitHub Account Viewer (iOS App) | 2023</strong><br>Technologies: Swift, REST APIs, Google Analytics, MVC</li>
-        <li><strong>Calling App (iOS App) | 2023</strong><br>Technologies: Swift, REST APIs, MVC, XCT</li>
-        <li><strong>Drone Evacuation System | 2023</strong><br>Technologies: Python, MavLink, MQTT</li>
-        <li><strong>Travel Mate (Android App) | 2023</strong><br>Technologies: Kotlin, Firebase, Google Maps API</li>
-        <li><strong>Verilog with Basys3 Board (FPGA) | 2023</strong><br>Technologies: Verilog, Basys3 Board</li>
-        <li><strong>Morse Code Game (ARM Assembly) | 2023</strong><br>Technologies: C, ARM Assembly</li>
-        <li><strong>Data Structures and Algorithms | TCD | 2022</strong><br>Technologies: C</li>
-        <li><strong>Eye Navigation System for Paralyzed People | 2021-2022</strong><br>Technologies: Python, Computer Vision, Arduino</li>
-        <li><strong>Lucas Rail Light System (Microsimulation) | 2021</strong><br>Technologies: Arduino, IR Sensors, Zigbee</li>
-        <li><strong>Database Backend for Career Guidance | 2021</strong><br>Technologies: SQL, MySQL Workbench</li>
-        <li><strong>Computer Network Projects | 2020</strong><br>Technologies: GNS3, CMD</li>
-    </ul>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="company">Software Engineer Intern @ PayTM</span>
+                    <span class="date">June 2023 – Aug 2023</span>
+                </div>
+                <ul>
+                    <li>Completed training projects on API handling, code reusability, MVP, testing, and app layouts.</li>
+                    <li>Collaborated with the core dev team for feature deployment and bug fixing.</li>
+                    <li>Wrote unit tests for new features in the production codebase.</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-tag">Swift</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">Google Analytics</span>
+                    <span class="tech-tag">AdMob</span>
+                    <span class="tech-tag">MVC</span>
+                    <span class="tech-tag">TDD</span>
+                </div>
+            </div>
+        </section>
 
-    <h2>OTHER EXPERIENCE</h2>
-    <ul>
-        <li>Member, Trinity Indian Society (2022-Present)</li>
-        <li>Social Work Volunteer, Kanayiya Ashram (2020-2021)</li>
-    </ul>
+        <section class="section">
+            <h2>PROJECTS</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>CRAWLER Protocol Simulation</h3>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <ul>
+                        <li>Simulated a secure LEO satellite communication network using the CRAWLER protocol.</li>
+                        <li>Designed Python scripts to relay instructions to a robot through a dynamic satellite network.</li>
+                        <li>Implemented real-time fault tolerance and infrastructure gateway switching.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cryptography</span>
+                        <span class="tech-tag">JSON</span>
+                        <span class="tech-tag">Batch Scripting</span>
+                    </div>
+                </div>
 
-    <h2>EDUCATION</h2>
-    <ul>
-        <li>Trinity College Dublin (2022-Present) | Scholarship: €4K per year</li>
-        <li>Thapar University Patiala (2020-2022) | CGPA: 9.16/10</li>
-    </ul>
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Captcha Breaker DL</h3>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <ul>
+                        <li>Built a CNN-based CAPTCHA solver capable of handling variable-length CAPTCHAs.</li>
+                        <li>Optimized the model using TFLite for efficient deployment on a Raspberry Pi.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TFLite</span>
+                        <span class="tech-tag">Raspberry Pi</span>
+                        <span class="tech-tag">CNN</span>
+                    </div>
+                </div>
 
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>GitHub Account Viewer</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <ul>
+                        <li>Developed an iOS app to view GitHub profiles, integrating with GitHub APIs.</li>
+                        <li>Designed responsive UI with media support; integrated Google Ads and Firebase analytics.</li>
+                        <li>Ensured code robustness with MVC architecture and XCT test cases.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Swift</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">Google Analytics</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">MVC</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Calling App</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <ul>
+                        <li>Developed an app to organize contacts, add notes/media, and call directly.</li>
+                        <li>Implemented sleek UI with MVC architecture and XCT test cases.</li>
+                        <li>Integrated Google Ads and analytics for performance tracking.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Swift</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">AdMob</span>
+                        <span class="tech-tag">MVC</span>
+                        <span class="tech-tag">TDD</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Drone Evacuation System</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <ul>
+                        <li>Designed a decentralized data fabric for intermittent communication.</li>
+                        <li>Prototyped smart drones to optimize safe evacuation paths during crises.</li>
+                        <li>Implemented communication using MavLink and MQTT over a wireless mesh network.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">MavLink</span>
+                        <span class="tech-tag">MQTT</span>
+                        <span class="tech-tag">Multithreading</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Travel Mate</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <ul>
+                        <li>Built an app for users to share travel itineraries and connect with fellow travelers.</li>
+                        <li>Integrated Google Maps and Places APIs; used Firebase for storage and authentication.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Google Maps API</span>
+                        <span class="tech-tag">Android Studio</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Verilog with Basys3 Board</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <ul>
+                        <li>Designed and tested a mini ALU using combinatorial logic.</li>
+                        <li>Implemented the ALU on the Basys3 Board; demonstrated functionality with waveforms.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Verilog</span>
+                        <span class="tech-tag">FPGA</span>
+                        <span class="tech-tag">Basys3 Board</span>
+                        <span class="tech-tag">Xilinx Vivado</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Morse Code Game</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <ul>
+                        <li>Developed a Morse Code teaching game for MAKER-PI-PICO using C and ARM assembly.</li>
+                        <li>Implemented game logic, scoring, and level progression with user input and LED feedback.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">C</span>
+                        <span class="tech-tag">ARM Assembly</span>
+                        <span class="tech-tag">MAKER-PI-PICO</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Eye Navigation System</h3>
+                        <span class="project-year">2021-2022</span>
+                    </div>
+                    <ul>
+                        <li>Simulated a smart wheelchair controlled by iris movements for motor neuron disease patients.</li>
+                        <li>Used RoboCar Nvis 3302ARD and developed iris detection algorithms in Python.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">Zigbee</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <h3>Lucas Rail Light System</h3>
+                        <span class="project-year">2021</span>
+                    </div>
+                    <ul>
+                        <li>Designed a microsimulation for an autonomous vehicle under wireless supervisory control.</li>
+                        <li>Implemented using Arduino-based buggy, IR sensors, and Zigbee communication.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">IR Sensors</span>
+                        <span class="tech-tag">Zigbee</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>EDUCATION</h2>
+            <div class="education-item">
+                <div class="experience-header">
+                    <span class="company">Trinity College Dublin</span>
+                    <span class="date">Sept 2022 – Present</span>
+                </div>
+                <h3>MAI-BAI Computer Engineering</h3>
+                <p>Scholarship by Thapar University worth €4K per year</p>
+            </div>
+
+            <div class="education-item">
+                <div class="experience-header">
+                    <span class="company">Thapar University Patiala</span>
+                    <span class="date">Sept 2020 – May 2022</span>
+                </div>
+                <h3>B.E. Computer Engineering</h3>
+                <p>CGPA: 9.16/10</p>
+                <p>Selected for Trinity College Dublin in 3rd year due to excellent grades</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>OTHER EXPERIENCE</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="company">Member, Trinity Indian Society</span>
+                    <span class="date">2022 – Present</span>
+                </div>
+                <p>Volunteered to organize meetups and cultural events.</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="company">Social Work Volunteer, Kanayiya Ashram</span>
+                    <span class="date">2020 – 2021</span>
+                </div>
+                <p>Served as youth representative; collected funds for specially challenged individuals.</p>
+            </div>
+        </section>
+    </main>
 </body>
-
 </html>
